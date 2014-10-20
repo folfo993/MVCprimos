@@ -12,9 +12,7 @@ public class Refactorizar {
         boolean primo = false;
         int digitos;
         int contadorDigitos = 0;
-        System.out.print("Introducir digitos: ");
-        Scanner parida = new Scanner(System.in);
-        digitos=parida.nextInt();
+        digitos = scanDigitos();
         if (digitos <= 0) {
             System.out.println("Ingrese como parámetro, un numero de digitos correcto (mayor que 0): ");
         }
@@ -64,6 +62,14 @@ public class Refactorizar {
                 }
             }
         }
+    }
+
+    private static int scanDigitos() {
+        int digitos;
+        System.out.print("Introducir digitos: ");
+        Scanner parida = new Scanner(System.in);
+        digitos = parida.nextInt();
+        return digitos;
     }
 
 }
