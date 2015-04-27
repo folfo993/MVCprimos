@@ -1,24 +1,18 @@
 package refactorizar;
 
-import java.util.Scanner;
-
 /**
- * Lista los numeros primos de dos cifras
+ *
  *
  */
 public class Refactorizar {
 
     public static void main(String[] args) {
+        Modelo mod = new Modelo();
         boolean primo = false;
-        int digitos;
-        int contadorDigitos = 0;
-        digitos = scanDigitos();
-        if (digitos <= 0) {
-            System.out.println("Ingrese como parámetro, un numero de digitos correcto (mayor que 0): ");
-        }
+        int contadorDigitos;
+        mod.setDigitos(Vista.scanDigitos());
         for (int i = 1; i <= 99999; i++) {
             int divisionEntera = i;
-
             int contador = 0;
 
             while (divisionEntera != 0) {
@@ -26,8 +20,7 @@ public class Refactorizar {
                 contador++;
             }
             contadorDigitos = contador;
-
-            if (contadorDigitos == digitos) {
+            if (contadorDigitos == mod.getDigitos()) {
                 if (i < 4) {
                     primo = true;
                 } else {
@@ -40,7 +33,6 @@ public class Refactorizar {
                         if (limite % 2 == 0) {
                             limite--;
                         }
-
                         while (i1 <= limite) {
                             if (i % i1 == 0) {
                                 contador1++;
@@ -50,26 +42,17 @@ public class Refactorizar {
                                 i1 = limite + 1;
                             }
                         }
-
                         if (contador1 == 1) {
                             primo = true;
                         }
                     }
                 }
-
                 if (primo == true) {
-                    System.out.println(i);
+                    mod.add(i);
                 }
             }
         }
-    }
-
-    private static int scanDigitos() {
-        int digitos;
-        System.out.print("Introducir digitos: ");
-        Scanner parida = new Scanner(System.in);
-        digitos = parida.nextInt();
-        return digitos;
+        Vista.imprimir(mod);
     }
 
 }
